@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainTapa {
-    
-    static int id = 1;
 
     public static void printTapas(){
         GetTapasUseCase tapasUseCase = new GetTapasUseCase(TapaDataRepository.newInstance());
@@ -17,12 +15,13 @@ public class MainTapa {
         System.out.println(tapas.toString());
     }
 
-    public static void printTapa(String tapaId){
+//    No hace falta este metodo
+    /*public static void printTapa(String tapaId){
         GetTapaUseCase getTapaUseCase = new GetTapaUseCase(TapaDataRepository.newInstance());
         Tapa tapa = getTapaUseCase.execute(tapaId);
         System.out.println(tapa.toString());
     }
-
+*/
     public static void deleteTapa(String tapaId){
         DeleteTapaUseCase deleteTapaUseCase = new DeleteTapaUseCase(TapaDataRepository.newInstance());
         deleteTapaUseCase.execute(tapaId);
@@ -37,7 +36,6 @@ public class MainTapa {
     public static void updateTapa(Tapa tapa){
         UpdateTapaUseCase updateTapaUseCase = new UpdateTapaUseCase(TapaDataRepository.newInstance());
         updateTapaUseCase.execute(tapa);
-
         System.out.println("");
     }
 
@@ -84,7 +82,7 @@ public class MainTapa {
         Scanner sc = new Scanner(System.in);
         System.out.println("Añade la siguiente informacion separada por espacios (salvo los ingredientes que puede ir con comas o separados)");
         System.out.println("Nombre, Estableciemiento , Puntos Totales, Media de votos, Numero de participantes, Votos totales, Ingredientes");
-        createTapa(new Tapa(Integer.toString(id++),sc.next(),sc.next(),sc.next(),sc.next(),sc.next(),sc.next(),sc.nextLine()));
+        createTapa(new Tapa(sc.next(),sc.next(),sc.next(),sc.next(),sc.next(),sc.next(),sc.nextLine()));
     }
     public static void menuUpdate(){
         Scanner sc = new Scanner(System.in);

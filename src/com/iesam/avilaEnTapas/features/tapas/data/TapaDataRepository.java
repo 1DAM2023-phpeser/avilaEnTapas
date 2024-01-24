@@ -10,14 +10,11 @@ public class TapaDataRepository implements TapaRepository {
     private static TapaDataRepository instance = null;
 
     private ArrayList<Tapa> localTapas = new ArrayList<>();
-
-    private TapaDataRepository(){
-        initData();
-    }
+    private ArrayList<Tapa> localTapasAux = new ArrayList<>();
 
     @Override
     public ArrayList<Tapa> obtainTapas(){
-        return localTapas;
+            return localTapas;
     }
 
     @Override
@@ -39,15 +36,16 @@ public class TapaDataRepository implements TapaRepository {
     @Override
     public void saveTapa(Tapa tapa){
         localTapas.add(tapa);
+        localTapasAux = localTapas;
+        for (int i = 0; i < localTapasAux.size(); i++)
+            localTapasAux.get(i).setId(Integer.toString(localTapasAux.indexOf(localTapas.get(i)) + 1));
+        localTapas = localTapasAux;
     }
 
     @Override
     public void updateTapa(Tapa tapa){
         deleteTapa(tapa.getId());
         saveTapa(tapa);
-    }
-    private void initData() {
-
     }
 
     public static TapaDataRepository newInstance(){

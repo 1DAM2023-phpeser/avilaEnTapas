@@ -11,6 +11,16 @@ public class Tapa {
     private String totalVotes;
     private String ingredients;
 
+    public Tapa(String name, String place, String totalPoints, String averagePoints, String numberParticipants, String totalVotes, String ingredients) {
+        this.name = name;
+        this.place = place;
+        this.totalPoints = totalPoints;
+        this.averagePoints = averagePoints;
+        this.numberParticipants = numberParticipants;
+        this.totalVotes = totalVotes;
+        this.ingredients = ingredients;
+    }
+
     public Tapa(String id, String name, String place, String totalPoints, String averagePoints, String numberParticipants, String totalVotes, String ingredients) {
         this.id = id;
         this.name = name;
@@ -97,6 +107,6 @@ public class Tapa {
                 ", Numero de participantes='" + numberParticipants + '\'' +
                 ", Total de votos='" + totalVotes + '\'' +
                 ", Ingredientes='" + ingredients + '\'' +
-                '}';
+                '}' + "\n";
     }
 }
