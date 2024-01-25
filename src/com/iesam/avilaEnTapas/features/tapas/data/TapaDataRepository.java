@@ -12,6 +12,13 @@ public class TapaDataRepository implements TapaRepository {
     private ArrayList<Tapa> localTapas = new ArrayList<>();
     private ArrayList<Tapa> localTapasAux = new ArrayList<>();
 
+    public void updateId(){
+        localTapasAux = localTapas;
+        for (int i = 0; i < localTapasAux.size(); i++)
+            localTapasAux.get(i).setId(Integer.toString(localTapasAux.indexOf(localTapas.get(i)) + 1));
+        localTapas = localTapasAux;
+    }
+
     @Override
     public ArrayList<Tapa> obtainTapas(){
             return localTapas;
@@ -31,15 +38,14 @@ public class TapaDataRepository implements TapaRepository {
         for (int i = 0; i < localTapas.size(); i++)
             if (localTapas.get(i).getId().equals(tapaId))
                 localTapas.remove(i);
+        updateId();
     }
 
     @Override
     public void saveTapa(Tapa tapa){
         localTapas.add(tapa);
-        localTapasAux = localTapas;
-        for (int i = 0; i < localTapasAux.size(); i++)
-            localTapasAux.get(i).setId(Integer.toString(localTapasAux.indexOf(localTapas.get(i)) + 1));
-        localTapas = localTapasAux;
+        updateId();
+
     }
 
     @Override
